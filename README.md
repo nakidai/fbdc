@@ -4,7 +4,7 @@ FBDC - Filesystem based discord client
 
 I just wanted to make filesystem based discord client, because I haven't seen discord clients of this kind. I couldn't find time for it because of my lazyness, but now it should work.
 
-Thanks to @UltraQbik and his [repo](https://github.com/UltraQbik/headless-discord) for some code that I've stilled.
+Thanks to @UltraQbik and his [repo](https://github.com/UltraQbik/headless-discord) for some code that I've stealed.
 
 Usage
 --
