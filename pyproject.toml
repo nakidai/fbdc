@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fbdc"
+description = "Filesystem Based Discord Client"
+readme = "README.md"
+version = "v1.0"
+dependencies = [
+    "websockets",
+    "requests",
+    "aiofiles",
+    "watchdog",
+    "hachiko@git+https://github.com/biesnecker/hachiko" # Git is should be used there beacuse version from PyPI is too old
+]
+authors = [{name = "Nakidai", email = "plaza521@inbox.ru"}]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+fbdc = "fbdc:main"
