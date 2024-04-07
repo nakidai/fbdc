@@ -5,7 +5,6 @@ import asyncio
 import json
 
 from .client import Client
-from .io import Request, Response
 
 import websockets
 import requests
