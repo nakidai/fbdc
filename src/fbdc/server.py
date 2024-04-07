@@ -18,6 +18,7 @@ class Server:
 
         self.socket: websockets.WebSocketClientProtocol | None = None
         self.heartbeat_interval: float | None = None
+        self.sequence: str | None = None
 
     async def client_request(self, type, **kwargs) -> Any:
         match type:
