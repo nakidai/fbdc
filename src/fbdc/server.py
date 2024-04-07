@@ -1,6 +1,5 @@
 from typing import Any, Callable, Awaitable
 from functools import partial
-from random import random
 import asyncio
 import json
 
@@ -73,7 +72,7 @@ class Server:
         await self.send_request({"op": 1, "d": self.sequence})
 
     async def heartbeat(self) -> Awaitable[None]:
-        await asyncio.sleep(self.heartbeat_interval * random())
+        await asyncio.sleep(self.heartbeat_interval)
         while self.socket.open:
             await self.heartbeat_send()
             await asyncio.sleep(self.heartbeat_interval)
