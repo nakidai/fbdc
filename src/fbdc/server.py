@@ -129,3 +129,6 @@ class Server:
             asyncio.run(self.socket_run())
         except KeyboardInterrupt:
             pass
+
+
+__all__ = ["Server"]
