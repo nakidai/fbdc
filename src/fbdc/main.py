@@ -2,7 +2,7 @@ from os import getcwd
 import argparse
 
 from .server import Server
-from .client import Client
+from .client.fsclient import FSClient
 
 
 def main() -> None:
@@ -22,7 +22,7 @@ def main() -> None:
     )
     args = parser.parse_args()
     
-    client = Client(args.root)
+    client = FSClient(args.root)
     server = Server(args.token, client)
 
     server.start()

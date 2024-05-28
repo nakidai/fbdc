@@ -10,9 +10,10 @@ import aiofiles.os
 from ..utils import set_root
 
 from .watchdog import watch_for
+from .base import BaseClient
 
 
-class Client:
+class FSClient(BaseClient):
     def __init__(self, root: str) -> None:
         self.root = root
         self.path = set_root(self.root)

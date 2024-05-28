@@ -1,4 +1,5 @@
-from .client import Client
+from .fsclient import FSClient
+from .base import BaseClient
 
 
-__all__ = ["Client"]
+__all__ = ["BaseClient", "FSClient"]

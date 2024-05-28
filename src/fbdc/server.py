@@ -3,16 +3,19 @@ from functools import partial
 import asyncio
 import json
 
-from .client import Client
+from .client import BaseClient
 
 import websockets
 import requests
 
 
 class Server:
-    def __init__(self, token: str, client: Client) -> None:
+    def __init__(self, token: str, client: BaseClient) -> None:
+        if not isinstance(client, BaseClient):
+            raise TypeError("Client should be inherited from fbdc.client.BaseClient")
+
         self.token: str = token
-        self.client: Client = client
+        self.client: BaseClient = client
         self.client.server_request = self.client_request
 
         self.socket: websockets.WebSocketClientProtocol | None = None
