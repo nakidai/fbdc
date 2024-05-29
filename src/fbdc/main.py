@@ -1,8 +1,8 @@
-from os import getcwd
 import argparse
+from os import getcwd
 
-from .server import Server
 from .client.fsclient import FSClient
+from .server import Server
 
 
 def main() -> None:

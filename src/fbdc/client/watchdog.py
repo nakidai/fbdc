@@ -1,6 +1,6 @@
 from typing import Callable, Awaitable
 
-from hachiko.hachiko import AIOWatchdog, AIOEventHandler
+from hachiko.hachiko import AIOEventHandler, AIOWatchdog
 from watchdog.events import FileCreatedEvent
 
 

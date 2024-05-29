@@ -1,12 +1,12 @@
-from typing import Any, Callable, Awaitable
-from functools import partial
 import asyncio
 import json
+from functools import partial
+from typing import Any, Awaitable, Callable
+
+import requests
+import websockets
 
 from .client import BaseClient
-
-import websockets
-import requests
 
 
 class Server:
