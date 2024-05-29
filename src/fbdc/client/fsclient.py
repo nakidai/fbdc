@@ -1,3 +1,9 @@
+"""
+Filesystem client for fbdc
+
+FSClient(root: str): filesystem client for fbdc
+"""
+
 from os import makedirs
 from pathlib import Path
 from typing import Any, Awaitable
@@ -14,14 +20,32 @@ from .watchdog import watch_for
 
 
 class FSClient(BaseClient):
+    """Filesystem client for fbdc"""
+
     def __init__(self, root: str) -> None:
-        self.root = root
-        self.path = set_root(self.root)
+        """
+        Filesystem client for fbdc
+
+        :param root: Root of the client
+        :type root: str
+        """
+
+        self.root: str = root
+        self.path: Callable[[str], str] = set_root(self.root)
         self.server_request: Callable[[Request], Awaitable[Response]] | None = None
 
         self.watchdogs: list[AIOWatchdog] = []
 
-    async def channel_api_handler(self, event: FileCreatedEvent) -> None:
+    async def channel_api_handler(self, event: FileCreatedEvent) -> Awaitable[None]:
+        """
+        Handle channel's api
+
+        :param event: Request
+        :type event: watchdog.events.FileCreatedEvent
+        :return: Returns nothing
+        :rtype: Awaitable[None]
+        """
+
         path = event.src_path.split('/')
         async with aiofiles.open(event.src_path) as f:
             content = await f.read()
@@ -39,6 +63,14 @@ class FSClient(BaseClient):
         await aiofiles.os.remove(event.src_path)
 
     async def start_watchdog(self, guilds: dict[str, list[str]]) -> Awaitable[None]:
+        """
+        Start watchdog for watching for apis
+
+        :param guilds: Guilds with channels where to watch
+        :type guilds: dict[str, list[str]]
+        :return: Returns nothing
+        :rtype: Awaitable[None]
+        """
         for guild in guilds:
             for channel in guilds[guild]:
                 self.watchdogs.append(
@@ -49,6 +81,14 @@ class FSClient(BaseClient):
                 )
 
     async def init(self, data: dict[str, Any]) -> Awaitable[None]:
+        """
+        Create directories and info files for user, guilds and channels
+
+        :param data: data
+        :type data: dict[str, any]
+        :return: Returns nothing
+        :rtype: Awaitable[None]
+        """
         makedirs(
             self.path(""),
             mode=0o755, exist_ok=True
@@ -90,6 +130,15 @@ class FSClient(BaseClient):
         await self.start_watchdog(guilds)
 
     async def message(self, data: dict[str, Any]) -> Awaitable[None]:
+        """
+        Log message in channel
+
+        :param data: data
+        :type data: dict[str, Any]
+        :return: Returns nothing
+        :rtype: Awaitable[None]
+        """
+
         log_path = self.path(f"{data['guild_id']}/{data['channel_id']}/messages")
 
         username = data["author"]["username"]

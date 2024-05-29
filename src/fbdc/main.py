@@ -1,3 +1,5 @@
+"""This module contains only cli"""
+
 import argparse
 from os import getcwd
 
@@ -6,6 +8,12 @@ from .server import Server
 
 
 def main() -> None:
+    """
+    fbdc's cli
+
+    Arguments are described below
+    """
+
     parser = argparse.ArgumentParser(
         prog="fbdc",
         description="Filesystem Based Discord Client"
