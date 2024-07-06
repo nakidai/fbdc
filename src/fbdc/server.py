@@ -47,7 +47,7 @@ class Server:
         :param type: type of the request
         :type type: str
         :param kwargs: request arguments
-        :rturn: Returns return from requested or None on invalid type
+        :return: Returns return from requested or None on invalid type
         :rtype: Any
         """
 
